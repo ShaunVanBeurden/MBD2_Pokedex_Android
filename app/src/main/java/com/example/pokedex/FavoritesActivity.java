@@ -1,28 +1,15 @@
 package com.example.pokedex;
 
 import android.content.Intent;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -57,7 +44,6 @@ public class FavoritesActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
                 intent.putExtra("name", listView.getItemAtPosition(position).toString());
-                //based on item add info to intent
                 startActivity(intent);
             }
         });

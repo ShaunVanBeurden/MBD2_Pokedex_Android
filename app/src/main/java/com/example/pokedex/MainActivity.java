@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -47,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),DetailsActivity.class);
                 intent.putExtra("name", listView.getItemAtPosition(position).toString());
-                //based on item add info to intent
                 startActivity(intent);
             }
         });
@@ -81,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                                             pokemonNames
                                     )
                             );
-                            Log.d("pokedexLV", "pokemon: " + pokemonNames.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -92,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 error.printStackTrace();
             }
         });
-
         mQueue.add(request);
     }
 
