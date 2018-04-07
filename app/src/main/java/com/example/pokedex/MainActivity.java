@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                             pokemonNames
                                     )
                             );
+                            Log.d("pokedexLV", "pokemon: " + pokemonNames.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -105,15 +106,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_pokedex:
-                // User chose the "Settings" item, show the app settings UI...
-                return true;
-
             case R.id.action_favorites:
                 Intent favoriteIntent = new Intent(getApplicationContext(),FavoritesActivity.class);
                 startActivity(favoriteIntent);
                 return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

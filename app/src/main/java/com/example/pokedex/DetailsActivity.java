@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -76,6 +77,9 @@ public class DetailsActivity extends AppCompatActivity {
         try {
             FileOutputStream fileOutputStream = openFileOutput(file_name,MODE_APPEND);
             fileOutputStream.write(pokemonName.getBytes());
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
+            outputStreamWriter.append("\n");
+            outputStreamWriter.close();
             fileOutputStream.close();
             Toast.makeText(getApplicationContext(), "Pokemon " + pokemonName + " added to favorites!", Toast.LENGTH_LONG).show();
         } catch (IOException e) {

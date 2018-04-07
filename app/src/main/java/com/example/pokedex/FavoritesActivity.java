@@ -29,14 +29,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoritesActivity extends AppCompatActivity {
 
-    private RequestQueue mQueue;
     private ListView listView;
     private String favorite;
-    private StringBuffer stringBuffer;
-    private int lines;
+    private List<String> pokemonNames = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,7 @@ public class FavoritesActivity extends AppCompatActivity {
         // Find the ListView resource.
         listView = findViewById( R.id.lvFavorites);
 
-        mQueue = Volley.newRequestQueue(this);
-        jsonParse();
+        fillListView();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -67,13 +66,7 @@ public class FavoritesActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
     }
 
-    private void jsonParse() {
-
-        String[] pokemonNames = new String[lines];
-
-        for (int i = 0; i < lines; i++) {
-            pokemonNames[i] = stringBuffer.toString();
-        }
+    private void fillListView() {
 
         listView.setAdapter(
                 new ArrayAdapter<String>(
@@ -88,13 +81,9 @@ public class FavoritesActivity extends AppCompatActivity {
             FileInputStream fileInputStream = openFileInput("favorite_pokemon");
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            stringBuffer = new StringBuffer();
             while ((favorite=bufferedReader.readLine()) != null) {
-                stringBuffer.append(favorite + "\n");
-                lines++;
+                pokemonNames.add(favorite);
             }
-            Log.d("Test", stringBuffer.toString());
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -113,19 +102,13 @@ public class FavoritesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_pokedex:
-                // User chose the "Settings" item, show the app settings UI...
+                Intent pokedexIntent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(pokedexIntent);
                 return true;
-
-            case R.id.action_favorites:
-                Intent favoriteIntent = new Intent(getApplicationContext(),FavoritesActivity.class);
-                startActivity(favoriteIntent);
-                return true;
-
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
     }
 }
