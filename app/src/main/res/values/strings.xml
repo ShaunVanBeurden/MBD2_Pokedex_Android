@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pokedex</string>
+    <string name="poke_name">Naam: </string>
+    <string name="poke_weight">Gewicht: </string>
+    <string name="poke_height">Hoogte: </string>
+    <string name="favorites">Toevoegen aan favorieten</string>
+</resources>
